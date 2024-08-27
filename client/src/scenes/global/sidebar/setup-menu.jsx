@@ -1,7 +1,7 @@
 import { Box, Button ,Autocomplete, TextField,useTheme} from "@mui/material";
 import Quantity from "../../../components/quantity";
 //needs to be an array of part numbers later
-import { testPart } from "../../../data/test-data.mjs";
+import { structures } from "../../../data/test-data.mjs";
 import { tokens } from "../../../theme";
 import { useContext, useState } from "react";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
@@ -9,10 +9,9 @@ import "./setup-menu.styles.css"
 import {STRUCTUREOPTIONS} from "../../../utils/misc.mjs"
 
 const SetupMenu = ()=>{
-    const structures = testPart;
     console.log(structures);
-    const STRUCTUREOPTIONS = ["Available", "OnHand"]
     const theme = useTheme();
+    const STRUCTUREOPTIONSLIST = [];
     const colors = tokens(theme.palette.mode);
     const [isSelectedPartStructure, setIsSelectedPartStructure] = useState("");
     const [isPartStructure,setIsPartStructure] = useState("");
@@ -21,6 +20,10 @@ const SetupMenu = ()=>{
     const [isSubmitted, setIsSubmitted] = useState(false);
     const {qty,setActiveStructureType,reqCount,setReqCount,setSubmittedQty,setSubmittedPartStructure, setSubmittedStructureType} = useContext(PartStructureContext);
     //field changes for qty strucutre type and part structure
+    for (const STRUCTUREOPTION in STRUCTUREOPTIONS){
+        STRUCTUREOPTIONSLIST.push(STRUCTUREOPTIONS[STRUCTUREOPTION]);
+
+    }
 
     const handlePartStructureChange = (event)=>{
         setIsPartStructure(event.target.value);
@@ -140,11 +143,11 @@ const SetupMenu = ()=>{
                 width= "180px"
                 height= "70px"
                 overflow= "hidden">
-                {STRUCTUREOPTIONS && 
+                {STRUCTUREOPTIONSLIST && 
                 <Autocomplete 
                     id="free-solo-demo"
                     onChange={(event, value) => {setIsStructureType(value);setIsSubmitted(false)}}
-                    options={STRUCTUREOPTIONS.map((option) =>`${option}`)}
+                    options={STRUCTUREOPTIONSLIST.map((option) =>`${option}`)}
                     renderInput={(params) => <TextField {...params} label="Structure Type" />}
                 />}
             </Box>

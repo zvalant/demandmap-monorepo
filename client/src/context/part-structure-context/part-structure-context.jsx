@@ -1,10 +1,11 @@
 import { createContext,useState,useEffect } from "react";
 import { MasterStructure } from "./helpers/master-structure.mjs";
 import { AvailableStructure } from "./helpers/available-structure.mjs";
-import { GenerateSubmittedStructure } from "./helpers/generate-submitted-strructure.mjs";
+import { GenerateSubmittedStructure } from "./helpers/generate-submitted-structure.mjs";
 import { OnHandStructure } from "./helpers/onhand-structure.mjs";
-import { STRUCTURETYPESTITLES } from "../../utils/misc.mjs";
-import { testPart } from "../../data/test-data.mjs";
+import { STRUCTUREOPTIONS } from "../../utils/misc.mjs";
+import { structures } from "../../data/test-data.mjs";
+
 /*
 Context Purpose:
 This context will contain states and functions that pertain to the demand map generation and UI
@@ -13,14 +14,13 @@ and the request count is incremented.  Majority of remaining states outside of s
 toggles for menus and part information.
 */
 const defaultStructure = {attributes:{}};
-const defaultStructureOption = STRUCTURETYPESTITLES.available;
+const defaultStructureOption = STRUCTUREOPTIONS.available;
 
 
 export const PartStructureContext = createContext({
     //use effect dependency
     reqCount:null, 
     setReqCount:()=>{},
-
 
     //from ui submission
     submittedQty: null,
@@ -148,7 +148,7 @@ export const PartStructureProvider = ({children}) =>{
                 let currentMasterStructure = {};
                 if (submittedPartStructure!== activeMasterStructure.name){
                     // !NEED TO CHANGE! pull part structure from database currently just test array
-                    let testData = testPart;
+                    let testData = structures;
                     for (let i=0;i<testData.length;i++){
                         if (testData[i].name == submittedPartStructure){
                             currentMasterStructure = testData[i];
@@ -194,8 +194,6 @@ export const PartStructureProvider = ({children}) =>{
         setCurrentPartStructure(currentStructure);
         console.log("partStructures: ",partStructures)
     },[partStructures])
-
-
 
     const value = {qty,setQty,currentPartStructure,
         setCurrentPartStructure,partStructures,setPartStructures,addToStructures,resetThePartStructures,changeToStructure,

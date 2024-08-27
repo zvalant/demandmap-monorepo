@@ -1,6 +1,5 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import RemaningItems from "../../components/remaining-items";
-import { testPart } from "../../data/test-data";
 import { tokens } from "../../theme";
 import MapViewport from "../../components/map-viewport";
 

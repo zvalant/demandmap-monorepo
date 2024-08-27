@@ -4,16 +4,16 @@ import Tree from "react-d3-tree";
 import { CircularProgress, Box, Typography} from "@mui/material/";
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import { useCenteredTree } from "./helpers.jsx";
-import { testPart } from "../../data/test-data.mjs";
 import {PartStructureContext} from "../../context/part-structure-context/part-structure-context.jsx";
 import { tokens } from "../../theme";
 import { useTheme } from "@emotion/react";
+import { STRUCTUREOPTIONS, numFormat } from "../../utils/misc.mjs";
 import "./map.styles.css";
 /*
 Purpose: The renderCard is used to import a custom object to be compatable with the react-d3-tree
 with this format can not use React hooks.
 */
-const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,currentPartStructure}) => {
+const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,currentPartStructure, activeStructureType}) => {
 
   let currentLocationSize = -1;
   let nodeLocationSize = -1;
@@ -44,12 +44,15 @@ const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,curren
 
   }
 
+  const demand = numFormat(nodeDatum.attributes.demand);
+  const qty = numFormat(nodeDatum.attributes.qty);
+
     return (
       <React.Fragment>
         <foreignObject
           {...foreignObjectProps}
-          width="445"
-          height="245"
+          width="460px"
+          height="300px"
           x="-210"
           y="-30"
           onClick= {()=>{currentLocationSize!== nodeLocationSize &&  handleClick()}}
@@ -57,14 +60,15 @@ const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,curren
         >
           <Box sx={{ 
             backgroundColor: {background} ,
-            width: "440px",
-            height: "240px", 
+            width: "450px",
+            height: "290px", 
             display: "flex", 
             flexDirection: "column" ,
             textAlign: "left", 
             border:"5px solid ", 
             borderRadius: "40px", 
             justifyContent: "top", 
+            alignItems: "center",
             borderColor:"black",
             "&:hover": {
               borderColor: "#ffffff", 
@@ -75,7 +79,10 @@ const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,curren
           >
             <Box m={4}>
               <Typography variant="h1">{nodeDatum.name}</Typography>
-              <Typography variant="h2">{nodeDatum.attributes.description}</Typography>
+              <Typography sx={{width: "400px", overflowWrap: "break-word"}} variant="h2">DESC: {nodeDatum.attributes.description}</Typography>
+              <Typography variant="h2">QTY REQ: {demand}</Typography>
+              { STRUCTUREOPTIONS.onHand == activeStructureType && <Typography variant="h2">ONHAND: {qty}</Typography>}
+              { STRUCTUREOPTIONS.available == activeStructureType && <Typography variant="h2">AVAILABLE: {qty}</Typography>}
             </Box>
           </Box>
         </foreignObject>
@@ -104,7 +111,7 @@ const MapViewport = ()=>{
           </Box>}
           {currentPartStructure!== undefined && !isLoading&&
           <Box height="100vh" width="100%"><Tree
-              nodeSize={{x: 110+(JSON.stringify(currentPartStructure).length/1000), y: 250 + (JSON.stringify(currentPartStructure).length/100)
+              nodeSize={{x: 115+(JSON.stringify(currentPartStructure).length/1000), y: 290 + (JSON.stringify(currentPartStructure).length/100)
             }}
               pathFunc="beizer curves"
               svgClassName="pathlines"
@@ -116,7 +123,7 @@ const MapViewport = ()=>{
               orientation = "vertical"
               centeringTransitionDuration={200}
               renderCustomNodeElement={(rd3tProps) =>
-                  renderCard({ ...rd3tProps,addToStructures,currentPartStructure})
+                  renderCard({ ...rd3tProps,addToStructures,currentPartStructure, activeStructureType })
                   
               }
           />

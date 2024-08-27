@@ -2,6 +2,7 @@
   "name": "demandmap-monorepo",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "install-client": "npm install --prefix client",

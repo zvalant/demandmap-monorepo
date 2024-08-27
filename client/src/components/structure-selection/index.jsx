@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
-import { testPart } from "../../data/test-data";
 import { TextField,  Box } from "@mui/material";
 import "./scrollbar.css"
-import { ClassNames } from "@emotion/react";
 
 
 
