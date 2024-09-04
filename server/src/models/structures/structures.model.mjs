@@ -33,11 +33,9 @@ export async function getActiveStructure(structureParameters){
                 return structures[i];
             }
         }
-        return {err: "Structure Not Found"}
-    }catch(error){
-        return {err: `Structure: ${structureID} Failed to Generate`}
-    }
+        throw new Error("not")
+        }catch(e){
+            console.log("could not fetch active strucutre");
+            return undefined;
+        }
 }
-
-getActiveStructure("6613200050");
-

@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
+import {httpGetAllStructures,httpGetActiveStructure, httpAddNewStructure} from "./structures.controller.mjs";
+import { httpAddPartStructure } from '../../../../client/src/utils/requests.mjs';
+export const structuresRouter = express.Router();
 
-const { httpGetAllStructures, httpGetActiveStructure } = require('./structures.controller.mjs');
-
-const structuresRouter = express.Router();
-
-structuresRouter.get('/structures/', httpGetAllStructures);
-structuresRouter.get('structures/:id', httpGetActiveStructure);
+structuresRouter.get('/all', httpGetAllStructures);
+structuresRouter.get('/:id', httpGetActiveStructure);
+structuresRouter.post("/:id", httpAddNewStructure);
 

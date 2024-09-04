@@ -20,6 +20,7 @@ const DataMenu = ()=>{
                 <Box sx={{
                     mt: 2,
                     maxHeight: "30vh",
+                    minHeight: "10vh",
                     overflow: "scroll",
                     overflowX: "hidden",
                 }}>

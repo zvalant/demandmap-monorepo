@@ -1,4 +1,5 @@
 import {getAllStructures, getActiveStructure} from "../../models/structures/structures.model.mjs"
+import { qadPartFetch } from "../../services/qad-api.mjs";
 
 export async function httpGetAllStructures(req,res){
     if (!await getAllStructures()){
@@ -11,24 +12,28 @@ export async function httpGetAllStructures(req,res){
 }
 
 export async function httpAddNewStructure(req,res){
-    let structureID = req.body;
+    let structure = req.body;
+    try{ await qadPartFetch(structure.structureID);
+
+    }catch{
+        return res.status(400).json({ERROR: "Invalid Request"})
+        
+    }
     //NEED TO MAKE CHECK AGAINST DATABASE TO SEE IF PART EXITS. 
     return res.status(200).json(await addNewStructure);
 }
 
-export async function httpGetActiveStructutre(req,res){
-    let structureParameters = req.body;
+export async function httpGetActiveStructure(req,res){
+    let structureParameters = Number(req.params.id);
     try{
-        return res.status(200).json(await getActiveStructure())
+        let structure =  (await getActiveStructure(structureParameters));
+        if (!structure){
+            throw new Error("Invalid Structure Request");
+        }
+        return res.status(200).json(structure);
 
     }catch(error){
-        return res.status(400).json({err: 'could not generate strucutre'})
+        return res.status(400).json({err: 'Invalid Structure Request'})
 
     }
 }
-
-async function apicall(part){
-    let structs = await httpGetAllStructures();
-    console.log("31\n" ,structs);
-}
-apicall("6613700420")

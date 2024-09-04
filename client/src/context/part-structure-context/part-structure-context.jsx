@@ -5,6 +5,7 @@ import { GenerateSubmittedStructure } from "./helpers/generate-submitted-structu
 import { OnHandStructure } from "./helpers/onhand-structure.mjs";
 import { STRUCTUREOPTIONS } from "../../utils/misc.mjs";
 import { structures } from "../../data/test-data.mjs";
+import {httpGetPartStructure} from "../../utils/requests.mjs";
 
 /*
 Context Purpose:
@@ -148,12 +149,8 @@ export const PartStructureProvider = ({children}) =>{
                 let currentMasterStructure = {};
                 if (submittedPartStructure!== activeMasterStructure.name){
                     // !NEED TO CHANGE! pull part structure from database currently just test array
-                    let testData = structures;
-                    for (let i=0;i<testData.length;i++){
-                        if (testData[i].name == submittedPartStructure){
-                            currentMasterStructure = testData[i];
-                        }
-                    }
+                    currentMasterStructure = await httpGetPartStructure(submittedPartStructure);
+                    console.log(currentMasterStructure);
                 }else{
                     currentMasterStructure = activeMasterStructure;
                 }

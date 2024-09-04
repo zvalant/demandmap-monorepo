@@ -16,7 +16,12 @@ if ('children' in part){
 }
 if (incompleteParts.length<1){
     return (
-    <Box><Typography variant="h5">No Remaining Items</Typography></Box>
+    <Box
+    sx={{display: "flex", 
+        flexDirection: "center",
+        justifyContent: "center",
+    
+    }}><Typography variant="h5">No Remaining Items</Typography></Box>
 )
 }
     return (
