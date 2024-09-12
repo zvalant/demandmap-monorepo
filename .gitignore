@@ -1,0 +1,2 @@
+server/src/services/mongo/mongo-info.mjs
+server/src/services/qad/qad-api-info.mjs

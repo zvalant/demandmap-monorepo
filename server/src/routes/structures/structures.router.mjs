@@ -5,5 +5,5 @@ export const structuresRouter = express.Router();
 
 structuresRouter.get('/all', httpGetAllStructures);
 structuresRouter.get('/:id', httpGetActiveStructure);
-structuresRouter.post("/:id", httpAddNewStructure);
+structuresRouter.post("/add", httpAddNewStructure);
 

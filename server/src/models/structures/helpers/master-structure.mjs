@@ -1,4 +1,4 @@
-import { qadPartFetch } from "../../../services/qad-api.mjs";
+import { qadPartFetch } from "../../../services/qad/qad-api.mjs";
 
 /*
 Purpose: 

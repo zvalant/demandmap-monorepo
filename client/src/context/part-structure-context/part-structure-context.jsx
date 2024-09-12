@@ -148,7 +148,6 @@ export const PartStructureProvider = ({children}) =>{
             try{
                 let currentMasterStructure = {};
                 if (submittedPartStructure!== activeMasterStructure.name){
-                    // !NEED TO CHANGE! pull part structure from database currently just test array
                     currentMasterStructure = await httpGetPartStructure(submittedPartStructure);
                     console.log(currentMasterStructure);
                 }else{

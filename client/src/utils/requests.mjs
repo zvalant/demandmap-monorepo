@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/v1";
+const API_URL = "http://localhost:8000/v1/";
 
 
 export async function httpGetAllPartStructures(){
@@ -8,7 +8,8 @@ export async function httpGetAllPartStructures(){
 
 export async function httpGetPartStructure(structureID){
     try{
-        return (await fetch(`${API_URL}/structures/${structureID}`)).json();
+        const response = await fetch(`${API_URL}/structures/${structureID}`);
+        return response.json();
           
     }catch(err){
         console.log("invalid strucuture in Requests file")
@@ -21,12 +22,12 @@ export async function httpGetPartStructure(structureID){
 }
 export async function httpAddPartStructure(structure){
     try{
-        return await fetch(`${API_URL}/structures/all`, {
+        return await fetch(`${API_URL}/structures/add`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(structure)
+            body: JSON.stringify({structureID: `${structure}`})
         })
     }catch(err){
         return {
@@ -34,5 +35,3 @@ export async function httpAddPartStructure(structure){
         }
     }
 }
-
-

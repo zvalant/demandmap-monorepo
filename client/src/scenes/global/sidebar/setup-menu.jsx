@@ -1,18 +1,18 @@
-import { Box, Button ,Autocomplete, TextField,useTheme} from "@mui/material";
+import { Box, Button ,Autocomplete, TextField,useTheme, Typography} from "@mui/material";
 import Quantity from "../../../components/quantity";
 //needs to be an array of part numbers later
-import { structures } from "../../../data/test-data.mjs";
 import { tokens } from "../../../theme";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
+import { httpGetAllPartStructures } from "../../../utils/requests.mjs";
 import "./setup-menu.styles.css"
 import {STRUCTUREOPTIONS} from "../../../utils/misc.mjs"
 
 const SetupMenu = ()=>{
-    console.log(structures);
     const theme = useTheme();
     const STRUCTUREOPTIONSLIST = [];
     const colors = tokens(theme.palette.mode);
+    const [partStructureOptions, setPartStructureOptions] = useState(null);
     const [isSelectedPartStructure, setIsSelectedPartStructure] = useState("");
     const [isPartStructure,setIsPartStructure] = useState("");
     const [isStructureType, setIsStructureType] = useState("");
@@ -20,6 +20,17 @@ const SetupMenu = ()=>{
     const [isSubmitted, setIsSubmitted] = useState(false);
     const {qty,setActiveStructureType,reqCount,setReqCount,setSubmittedQty,setSubmittedPartStructure, setSubmittedStructureType} = useContext(PartStructureContext);
     //field changes for qty strucutre type and part structure
+    useEffect(()=>{
+        const fetchPartStructureOptions = async ()=>{
+            try{
+                const response = await httpGetAllPartStructures();
+                setPartStructureOptions(response);
+
+            }catch{
+            return null}
+            }
+        fetchPartStructureOptions();
+    }, [])
     for (const STRUCTUREOPTION in STRUCTUREOPTIONS){
         STRUCTUREOPTIONSLIST.push(STRUCTUREOPTIONS[STRUCTUREOPTION]);
 
@@ -93,7 +104,7 @@ const SetupMenu = ()=>{
                 
              }}>
                 
-                {structures && 
+                {partStructureOptions && 
                     <Autocomplete 
                
                     ListboxProps={{
@@ -131,7 +142,7 @@ const SetupMenu = ()=>{
                     onChange={(event, value) => {setIsSelectedPartStructure(value); setIsSubmitted(false)}}
                     getOptionLabel={(option) => option.toString()} 
                     
-                    options={structures.map((option) =>`${option.name} || ${option.masterStructure.attributes.description}`)}
+                    options={partStructureOptions.map((option) =>`${option.name} || ${option.description}`)}
                     renderInput={(params) => <TextField {...params} label="Part Structure" />}
                 />              
                 }

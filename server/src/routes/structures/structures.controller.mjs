@@ -1,14 +1,16 @@
-import {getAllStructures, getActiveStructure} from "../../models/structures/structures.model.mjs"
-import { qadPartFetch } from "../../services/qad-api.mjs";
+import {getAllStructures, getActiveStructure, addNewStructure} from "../../models/structures/structures.model.mjs"
+import { qadPartFetch } from "../../services/qad/qad-api.mjs";
 
 export async function httpGetAllStructures(req,res){
-    if (!await getAllStructures()){
-        return res.status(404).json({"err": "Not Found"})
-
-
-    }
     const response = await getAllStructures();
-    return res.status(200).json(response);
+    console.log(" response ", response);
+    if (!response){
+        return res.status(404).json({"ERROR": "No Structures Found"});
+
+    }else{
+        return res.status(200).json(response);
+    }
+    
 }
 
 export async function httpAddNewStructure(req,res){
@@ -19,8 +21,12 @@ export async function httpAddNewStructure(req,res){
         return res.status(400).json({ERROR: "Invalid Request"})
         
     }
-    //NEED TO MAKE CHECK AGAINST DATABASE TO SEE IF PART EXITS. 
-    return res.status(200).json(await addNewStructure);
+    const response = await addNewStructure(structure.structureID);
+    console.log(response);
+    if (!response){
+        return res.status(400).json({"ERROR": "Could Not Generate Structure"});
+    }
+    return res.status(200).json(response);
 }
 
 export async function httpGetActiveStructure(req,res){
@@ -37,3 +43,4 @@ export async function httpGetActiveStructure(req,res){
 
     }
 }
+
