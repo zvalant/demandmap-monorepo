@@ -1,12 +1,14 @@
+/*
+Purpose: Contains data sections of the active top node.  Currently RemainingItems & 
+PartInfo
+*/
+
 import { Box, Typography } from "@mui/material"
 import RemaningItems from "../../../components/remaining-items";
 import PartInfo from "../../../components/part-info";
 import { useContext } from "react";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
-/*
-Purpose: Contains data sections of the active top node.  Currently RemainingItems & 
-PartInfo
-*/
+
 
 
 const DataMenu = ()=>{
@@ -19,6 +21,7 @@ const DataMenu = ()=>{
                 <Typography variant="h5">REMAINING ITEMS</Typography>
                 <Box sx={{
                     mt: 2,
+                    width: "100%",
                     maxHeight: "30vh",
                     minHeight: "10vh",
                     overflow: "scroll",

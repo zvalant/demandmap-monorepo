@@ -33,7 +33,9 @@ const ItemContaioner = ({component})=>{
             m: .5,
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
             alignItems: "center",
+            width: "100%",
             cursor: "pointer",
             "&:hover": {
                 borderColor: "#ffffff", 
@@ -41,7 +43,7 @@ const ItemContaioner = ({component})=>{
             
         }}>
             <Typography>{component.name}</Typography>
-            <Typography variant="h7">{component.attributes.description}</Typography>
+            <Typography variant="h7" sx={{textAlign: "center"}}> {component.attributes.description}</Typography>
             {component.attributes.childProgress !== undefined &&  
             <Box sx={{ 
                 width: '100%', 
@@ -62,7 +64,7 @@ const ItemContaioner = ({component})=>{
             },
             backgroundColor: colors.primary[200], // Customize the background color
           }} variant = "determinate" value={component.attributes.childProgress }/>
-                <Typography sx={{zIndex: 10, position:"absolute", top: "-25%"}} variant='h7'>{component.attributes.childProgress}</Typography>
+                <Typography sx={{zIndex: 10, position:"absolute", top: "-25%", color: 'white'}} variant='h7'>{component.attributes.childProgress}</Typography>
             </Box>
             }
             {component.attributes.childProgress === undefined&& 

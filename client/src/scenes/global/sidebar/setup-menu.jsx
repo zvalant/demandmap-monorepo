@@ -12,25 +12,15 @@ const SetupMenu = ()=>{
     const theme = useTheme();
     const STRUCTUREOPTIONSLIST = [];
     const colors = tokens(theme.palette.mode);
-    const [partStructureOptions, setPartStructureOptions] = useState(null);
     const [isSelectedPartStructure, setIsSelectedPartStructure] = useState("");
     const [isPartStructure,setIsPartStructure] = useState("");
     const [isStructureType, setIsStructureType] = useState("");
     const[isQuantity, setIsQuantity] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const {qty,setActiveStructureType,reqCount,setReqCount,setSubmittedQty,setSubmittedPartStructure, setSubmittedStructureType} = useContext(PartStructureContext);
+    const {qty,setActiveStructureType,reqCount,setReqCount,setSubmittedQty,
+        setSubmittedPartStructure, setSubmittedStructureType, partStructureOptions} = useContext(PartStructureContext);
     //field changes for qty strucutre type and part structure
-    useEffect(()=>{
-        const fetchPartStructureOptions = async ()=>{
-            try{
-                const response = await httpGetAllPartStructures();
-                setPartStructureOptions(response);
 
-            }catch{
-            return null}
-            }
-        fetchPartStructureOptions();
-    }, [])
     for (const STRUCTUREOPTION in STRUCTUREOPTIONS){
         STRUCTUREOPTIONSLIST.push(STRUCTUREOPTIONS[STRUCTUREOPTION]);
 
@@ -109,24 +99,24 @@ const SetupMenu = ()=>{
                
                     ListboxProps={{
                         style: {
-                            '::-webkit-scrollbar' :{
+                            '::WebkitScrollbar' :{
                             display: "scroll",
                             overflowX: "hidden",    
                             width: "0px", 
 
                             overflowX: "hidden",
                             },
-                            '& ::-webkit-scrollbar-track':{
+                            '& ::WebkitScrollbarTrack':{
                             background: `${colors.primary[400]}`, 
                             borderRadius: "10px", 
                             },
                             
-                            '&::-webkit-scrollbar-thumb': {
+                            '&::WebkitScrollbarThumb': {
                             background: "#888",
                             borderRadius: "10px" 
                             },
                             
-                            '&::-webkit-scrollbar-thumb:hover': {
+                            '&::WebkitScrollbarThumb:hover': {
                             background: "#555", 
                             },
                         

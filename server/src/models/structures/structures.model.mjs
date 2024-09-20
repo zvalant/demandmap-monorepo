@@ -1,4 +1,3 @@
-// this should be changed for actual database instead of test array
 import { structuresDatabase } from './structure.mongo.mjs'
 import { MasterStructure } from './helpers/master-structure.mjs';
 import {mongoConnect} from '../../services/mongo/mongo.mjs';

@@ -18,14 +18,20 @@ if (incompleteParts.length<1){
     return (
     <Box
     sx={{display: "flex", 
-        flexDirection: "center",
+        flexDirection: "column",
         justifyContent: "center",
+        width: "100%",
     
     }}><Typography variant="h5">No Remaining Items</Typography></Box>
 )
 }
     return (
         <Box 
+        sx={{display: "flex", 
+            flexDirection: "column",
+            justifyContent: "center",
+            width: "90%",
+        }}
         >
             {incompleteParts.map(component=><ItemContaioner component={component}/>)}
         </Box>

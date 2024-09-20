@@ -1,12 +1,3 @@
-import { createContext,useState,useEffect } from "react";
-import { MasterStructure } from "./helpers/master-structure.mjs";
-import { AvailableStructure } from "./helpers/available-structure.mjs";
-import { GenerateSubmittedStructure } from "./helpers/generate-submitted-structure.mjs";
-import { OnHandStructure } from "./helpers/onhand-structure.mjs";
-import { STRUCTUREOPTIONS } from "../../utils/misc.mjs";
-import { structures } from "../../data/test-data.mjs";
-import {httpGetPartStructure} from "../../utils/requests.mjs";
-
 /*
 Context Purpose:
 This context will contain states and functions that pertain to the demand map generation and UI
@@ -14,14 +5,31 @@ interaction with the map. This will currently trigger a structure generation whe
 and the request count is incremented.  Majority of remaining states outside of structures are 
 toggles for menus and part information.
 */
+
+import { createContext,useState,useEffect } from "react";
+import { GenerateSubmittedStructure } from "./helpers/generate-submitted-structure.mjs";
+import { STRUCTUREOPTIONS } from "../../utils/misc.mjs";
+import {httpGetPartStructure, httpAddPartStructure, httpGetAllPartStructures} from "../../utils/requests.mjs";
+
+//default values to revert to if error occurs
 const defaultStructure = {attributes:{}};
 const defaultStructureOption = STRUCTUREOPTIONS.available;
 
 
 export const PartStructureContext = createContext({
-    //use effect dependency
+    //use effect dependency for part strucutre setup
     reqCount:null, 
     setReqCount:()=>{},
+
+    // use effect dependency for part structure options
+    submittedStructureCount: null,
+    setSubmittedStructureCount: ()=>{},
+    partStructureOptions: null,
+    setPartStructureOptions: ()=>{},
+    submittedStructureOption: null,
+    setSubmittedStructureOption: ()=>{},
+
+
 
     //from ui submission
     submittedQty: null,
@@ -62,7 +70,7 @@ export const PartStructureContext = createContext({
 
     
 });
-
+//when user selects node or item to traverse in tree add 
 export const addPartStructure = (partStructures,locationArray)=>{
     const partStructuresPast = [...partStructures];
     const startIdx = 0;
@@ -96,8 +104,13 @@ export const PartStructureProvider = ({children}) =>{
     //loading flag
     const [isLoading,setIsLoading] = useState(false);
 
-    //use effect dependency
+    //use effect dependency for structure creation
     const [reqCount, setReqCount] = useState(0);
+
+    //use effect adding structure states
+    const [submittedStructureCount, setSubmittedStructureCount] = useState(0);
+    const [submittedStructureOption, setSubmittedStructureOption] = useState("");
+    const [partStructureOptions, setPartStructureOptions] = useState([]);
 
     //from ui submission
     const [submittedQty, setSubmittedQty] = useState(0);
@@ -191,9 +204,52 @@ export const PartStructureProvider = ({children}) =>{
         console.log("partStructures: ",partStructures)
     },[partStructures])
 
+    useEffect(()=>{
+        const fetchNewStructureOptions = async()=>{
+            if (submittedStructureCount==0){
+                return;
+            }
+            try{
+                const response = await httpAddPartStructure(submittedStructureOption);
+                console.log(response.ok);
+                if(!response.ok){
+                    throw new Error("Structure not Added, bad request");
+                }else{
+                    setPartStructureOptions(await httpGetAllPartStructures())
+                    alert("Structure was added")
+    
+                }
+            }catch{
+                alert("Cant Add Structure. Please enter Valid Structure")
+            }
+            
+        }
+        fetchNewStructureOptions();
+
+    }, [submittedStructureCount])
+    useEffect(()=>{
+        const fetchInitialStructureOptions = async ()=>{
+            try{
+                const response = await httpGetAllPartStructures();
+                if (response == {"ERROR": "No Structures Found"}){
+                    throw new Error("Error: Can't find Structures");
+                }
+                setPartStructureOptions(response);
+
+            }catch{
+                alert("Could not connect to DB no Options Available");
+            }
+        }
+        fetchInitialStructureOptions();
+        
+
+    }, [])
+
     const value = {qty,setQty,currentPartStructure,
         setCurrentPartStructure,partStructures,setPartStructures,addToStructures,resetThePartStructures,changeToStructure,
-        isLoading,setIsLoading,reqCount,setReqCount,changeActiveSetting,activeStructureType,setActiveStructureType, setSubmittedQty, setSubmittedPartStructure, setSubmittedStructureType}
+        isLoading,setIsLoading,reqCount,setReqCount,changeActiveSetting,activeStructureType,setActiveStructureType, 
+        setSubmittedQty, setSubmittedPartStructure, setSubmittedStructureType, submittedStructureCount, setSubmittedStructureCount,
+    partStructureOptions, submittedStructureOption, setSubmittedStructureOption }
     return <PartStructureContext.Provider value = {value}>{children}</PartStructureContext.Provider>
 
 }

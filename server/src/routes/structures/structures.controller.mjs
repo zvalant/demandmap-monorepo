@@ -24,7 +24,7 @@ export async function httpAddNewStructure(req,res){
     const response = await addNewStructure(structure.structureID);
     console.log(response);
     if (!response){
-        return res.status(400).json({"ERROR": "Could Not Generate Structure"});
+        return res.status(500).json({"ERROR": "Could Not Generate Structure"});
     }
     return res.status(200).json(response);
 }

@@ -5,7 +5,7 @@ import { Box, IconButton, Typography, useTheme, Button} from "@mui/material";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../../theme";
 
-import AddPartStructure from "../../../components/add-part-structure";
+import AddPartStructure from "./add-structure-menu";
 import SetupMenu from "./setup-menu";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
 import DataMenu from "./data-menu";
