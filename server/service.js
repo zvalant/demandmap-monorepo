@@ -1,3 +1,8 @@
+/*
+Purpose: creates a microsoft service of the express server.  
+*/
+
+
 var Service = require('node-windows').Service;
 
 // Create a new service object

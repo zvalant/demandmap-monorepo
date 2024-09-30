@@ -1,3 +1,8 @@
+/*
+Purpose: will contain main components and context providers to run application.  
+*/
+
+
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";

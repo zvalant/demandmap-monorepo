@@ -8,10 +8,11 @@ if different library is desigred please adjust generation methods accordingly.
 */
 
 export class MasterStructure {
-    constructor(name){
+    constructor(name, cache){
         this.name = name;
         this.qty = 1;
         this.custom = false; // flag exists to determine how master structure needs to be assembled
+        this.cache = cache
         this.masterStructure = {}; // full part structure without backtracing
         this.subComponents = []; //custom projects will consist of structured parts and qtys in this list
     }
@@ -32,22 +33,26 @@ export class MasterStructure {
         try {
             //base qty and data pulled from api
             console.log('request from method', part);
-            const fetchedData = await qadPartFetch(part);
+            let fetchedData = undefined;
+            if (this.cache[part]){
+                fetchedData = this.cache[part];
+            }else{
+                fetchedData = await qadPartFetch(part).ItemInv[0];}
             currentStructure.attributes = {};
-            currentStructure.attributes.onHand = fetchedData.ItemInv[0].Qty;
-            currentStructure.attributes.qtyAllocated = fetchedData.ItemInv[0].QtyAll;
+            currentStructure.attributes.onHand = fetchedData.Qty;
+            currentStructure.attributes.qtyAllocated = fetchedData.QtyAll;
             currentStructure.attributes.qtyPer = multiple;
-            currentStructure.attributes.cost = fetchedData.ItemInv[0].Cost;
-            currentStructure.name = fetchedData.ItemInv[0].Part; 
-            currentStructure.attributes.description= fetchedData.ItemInv[0].Description;
+            currentStructure.attributes.cost = fetchedData.Cost;
+            currentStructure.name = fetchedData.Part; 
+            currentStructure.attributes.description= fetchedData.Description;
             currentStructure.attributes.location = location;
     
-            if (fetchedData.ItemInv[0].ItemBOM){ //if ItemInv exists then children exist for part 
-                let childrenCount = fetchedData.ItemInv[0].ItemBOM.length;
+            if (fetchedData.ItemBOM){ //if ItemInv exists then children exist for part 
+                let childrenCount = fetchedData.ItemBOM.length;
                 currentStructure.children= [];
         
                 for (let i =0;i< childrenCount;i++) {
-                    let childPart = fetchedData.ItemInv[0].ItemBOM[i];
+                    let childPart = fetchedData.ItemBOM[i];
                     const childBuild = {}; 
                     currentStructure.children.push(childBuild);
                     location.push(i); //add a location value for next call into a child

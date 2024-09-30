@@ -1,3 +1,8 @@
+/*
+Purpose: main file that is used as wrapper for the application
+*/
+
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

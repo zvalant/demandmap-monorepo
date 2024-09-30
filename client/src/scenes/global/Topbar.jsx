@@ -1,3 +1,9 @@
+/*
+Purpose: is the component that will contain Top Bar title and lightmode/darkmode icon.
+*/ 
+
+
+
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
