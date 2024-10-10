@@ -215,8 +215,9 @@ export const PartStructureProvider = ({children}) =>{
                 if(!response.ok){
                     throw new Error("Structure not Added, bad request");
                 }else{
+                    await new Promise(resolve => setTimeout(resolve, 500));
                     setPartStructureOptions(await httpGetAllPartStructures())
-                    alert("Structure was added")
+                    alert(`Structure ${submittedStructureOption} was added`)
     
                 }
             }catch{
