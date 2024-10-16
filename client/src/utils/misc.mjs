@@ -17,8 +17,8 @@ export const numFormat = (num)=>{
 }
 
 export const STRUCTUREOPTIONS = {
-        available :"Available",
-        onHand: "OnHand"
+        Available :"Available",
+        OnHand: "OnHand"
     }
 export const qadPartFetch = async (part) =>{
     //Fetch qad data and store data from API call

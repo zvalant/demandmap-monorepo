@@ -16,10 +16,10 @@ export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=
     onHandStructure.generateOnHandStructure();
     availableStructure.generateAvailableStructure();
     switch(structureType){
-        case STRUCTUREOPTIONS.available:
+        case STRUCTUREOPTIONS.Available:
             selectedStructure = availableStructure.availableStructure;
             break;
-        case STRUCTUREOPTIONS.onHand:
+        case STRUCTUREOPTIONS.OnHand:
             selectedStructure = onHandStructure.onHandStructure;
             break;
         default:

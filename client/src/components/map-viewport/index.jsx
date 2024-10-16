@@ -81,8 +81,8 @@ const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,curren
               <Typography variant="h1">{nodeDatum.name}</Typography>
               <Typography sx={{width: "400px", overflowWrap: "break-word", maxHeight: "115px", overflow: "hidden"}} variant="h2">DESC: {nodeDatum.attributes.description}</Typography>
               <Typography variant="h2">QTY REQ: {demand}</Typography>
-              { STRUCTUREOPTIONS.onHand == activeStructureType && <Typography variant="h2">ONHAND: {qty}</Typography>}
-              { STRUCTUREOPTIONS.available == activeStructureType && <Typography variant="h2">AVAILABLE: {qty}</Typography>}
+              { STRUCTUREOPTIONS.OnHand == activeStructureType && <Typography variant="h2">ONHAND: {qty}</Typography>}
+              { STRUCTUREOPTIONS.Available == activeStructureType && <Typography variant="h2">AVAILABLE: {qty}</Typography>}
             </Box>
           </Box>
         </foreignObject>

@@ -13,7 +13,7 @@ import {httpGetPartStructure, httpAddPartStructure, httpGetAllPartStructures} fr
 
 //default values to revert to if error occurs
 const defaultStructure = {attributes:{}};
-const defaultStructureOption = STRUCTUREOPTIONS.available;
+const defaultStructureOption = STRUCTUREOPTIONS.Available;
 
 
 export const PartStructureContext = createContext({
@@ -167,7 +167,12 @@ export const PartStructureProvider = ({children}) =>{
                     currentMasterStructure = activeMasterStructure;
                 }
                 let selectedStructure = GenerateSubmittedStructure(currentMasterStructure, submittedQty, submittedStructureType);
-                console.log(selectedStructure)
+                console.log("before structure find");
+                if ( !(submittedStructureType in STRUCTUREOPTIONS)){
+                    throw new Error("Structure option was not submitted");
+
+                }
+                console.log("Found Structure Type");
 
                 //set all states
                 setActiveMasterStructure(currentMasterStructure);
