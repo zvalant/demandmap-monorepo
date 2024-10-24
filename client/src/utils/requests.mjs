@@ -5,8 +5,8 @@ specific selected structure from the client and adding a structure to the databa
 
 */
 
-const STRUCTURES_API_URL = "http://demandtstapi.lincofood.local/v1/structures/";
-//const STRUCTURES_API_URL = "http://localhost:8000/v1/structures/";
+//const STRUCTURES_API_URL = "http://demandtstapi.lincofood.local/v1/structures/";
+const STRUCTURES_API_URL = "http://localhost:8000/v1/structures/";
 
 //Inital fetch to get all available structures for user to select
 export async function httpGetAllPartStructures(){

@@ -39,16 +39,13 @@ export async function getActiveStructure(structureParameters){
         }
 }
 export async function addNewStructure(structureID){
-    console.log(structureID);
     try{
         const response = await structuresDatabase.findById(structureID);
-        console.log(response);
         if(response!=null){
             return {status: "Success" , msg: "Already existed in database"};
 
         }else{
             const partCache = await qadCache([structureID]);
-            console.log(partCache);
             const currentStructure = new MasterStructure(structureID, partCache);
             await currentStructure.generateMasterStructure();
             const newSubmission = new structuresDatabase({

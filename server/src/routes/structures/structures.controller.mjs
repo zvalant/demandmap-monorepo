@@ -3,7 +3,6 @@ import { qadPartFetch } from "../../services/qad/qad-api.mjs";
 
 export async function httpGetAllStructures(req,res){
     const response = await getAllStructures();
-    console.log(" response ", response);
     if (!response){
         return res.status(404).json({"ERROR": "No Structures Found"});
 
@@ -22,7 +21,6 @@ export async function httpAddNewStructure(req,res){
         
     }
     const response = await addNewStructure(structure.structureID);
-    console.log(response);
     if (!response){
         return res.status(500).json({"ERROR": "Could Not Generate Structure"});
     }

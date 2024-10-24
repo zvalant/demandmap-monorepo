@@ -12,9 +12,10 @@ the updated structure will be generated and will replace the old structure.
 
 */
 
-const updateDatabase = async ()=>{
+export const updateDatabase = async ()=>{
+    const PERDAY_MILISECONDS = 24*3600*1000
     const SELECTEDDELAY = 7;
-    const DELAYCONVERSION = 24*3600*1000*SELECTEDDELAY;
+    const DELAYCONVERSION = PERDAY_MILISECONDS*SELECTEDDELAY;
     const activeDatabase = await structuresDatabase.find();
     let partStructureTimestamps = {};
     let expiredParts = [];
@@ -48,9 +49,4 @@ const updateDatabase = async ()=>{
 
     return expiredParts;
 
-
-
-
 }
-await mongoConnect();
-console.log(await updateDatabase());
