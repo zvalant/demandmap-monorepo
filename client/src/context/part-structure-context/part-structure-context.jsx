@@ -198,6 +198,7 @@ export const PartStructureProvider = ({children}) =>{
 
     },[reqCount])
     useEffect(()=>{
+        setIsLoading(true);
         let currentStructure = {}
         const finalIdx = partStructures.length-1;
         if (finalIdx>=0){
@@ -207,6 +208,7 @@ export const PartStructureProvider = ({children}) =>{
         }
         setCurrentPartStructure(currentStructure);
         console.log("partStructures: ",partStructures)
+        setIsLoading(false);
     },[partStructures])
 
     useEffect(()=>{

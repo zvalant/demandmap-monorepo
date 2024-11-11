@@ -1,25 +1,18 @@
-import { structures } from "../../../data/test-data.mjs";
 import { OnHandStructure } from "./onhand-structure.mjs";
 import { AvailableStructure } from "./available-structure.mjs";
-import { STRUCTUREOPTIONS } from "../../../utils/misc.mjs";
+
 export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=>{
-    let testPart = structures;
     let selectedStructure = {};
-    // this will be replaced with DB fetch 
-    for (let i = 0;i<testPart.length;i++){
-        if (testPart[i].name == masterStructure){
-            masterStructure = testPart[i];
-        }
-    }
+    console.log("current master structure", masterStructure);
     let availableStructure = new AvailableStructure(masterStructure,qty);
     let onHandStructure = new OnHandStructure(masterStructure,qty);
     onHandStructure.generateOnHandStructure();
     availableStructure.generateAvailableStructure();
     switch(structureType){
-        case STRUCTUREOPTIONS.Available:
+        case 'Available':
             selectedStructure = availableStructure.availableStructure;
             break;
-        case STRUCTUREOPTIONS.OnHand:
+        case 'OnHand':
             selectedStructure = onHandStructure.onHandStructure;
             break;
         default:

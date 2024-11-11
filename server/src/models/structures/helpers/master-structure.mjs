@@ -28,6 +28,7 @@ export class MasterStructure {
 
     
     }
+
     async generateStructureLevel(masterStructure, part,currentStructure, multiple, location){
         //Take inital Part Number and construct total BOM Tree 
         try {
@@ -46,10 +47,19 @@ export class MasterStructure {
             currentStructure.name = fetchedData.Part; 
             currentStructure.attributes.description= fetchedData.Description;
             currentStructure.attributes.location = location;
+            if(!fetchedData.ItemBOM ||fetchedData.ItemPO){
+                currentStructure.attributes.purchasePart = true;
+                
+
+            }else{
+                currentStructure.attributes.purchasePart = false;
+            }
+
     
             if (fetchedData.ItemBOM){ //if ItemInv exists then children exist for part 
                 let childrenCount = fetchedData.ItemBOM.length;
                 currentStructure.children= [];
+                
         
                 for (let i =0;i< childrenCount;i++) {
                     let childPart = fetchedData.ItemBOM[i];
@@ -58,9 +68,20 @@ export class MasterStructure {
                     location.push(i); //add a location value for next call into a child
                     await this.generateStructureLevel(masterStructure, childPart.Comp, currentStructure.children[i],childPart.QtyPer,[...location]);
                     location.pop();//remove location value from previous child
-                
+                    if (!currentStructure.children[i].attributes.accumulatedPO){
+                        continue;
+                    }
+                   
                 }
-        }
+                    
+                
+            }
+                 
+            if (fetchedData.ItemPO){
+                currentStructure.attributes.activePO = fetchedData.ItemPO;
+              
+            }
+            
         return masterStructure
         } catch (error) {
             console.error("Error building data:", error);
@@ -70,3 +91,4 @@ export class MasterStructure {
     }
 
     };
+

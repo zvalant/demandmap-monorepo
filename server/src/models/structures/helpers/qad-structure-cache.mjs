@@ -1,4 +1,3 @@
-import { qadPartFetch } from "../../../services/qad/qad-api.mjs";
 import { QAD_API_BASE } from "../../../services/qad/qad-api-info.mjs";
 import axios from "axios";
 

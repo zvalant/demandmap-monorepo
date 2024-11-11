@@ -1,8 +1,5 @@
-import { structures } from "../../../testData/test-data.mjs";
-import  {MasterStructure}  from "./master-structure.mjs";
 import { OnHandStructure } from "./onhand-structure.mjs";
 import { AvailableStructure } from "./available-structure.mjs";
-import { STRUCTURETYPESTITLES } from "../../../utils/misc.mjs";
 export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=>{
     let selectedStructure = {};
     // this will be replaced with DB fetch 
@@ -17,10 +14,10 @@ export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=
     onHandStructure.generateOnHandStructure();
     availableStructure.generateAvailableStructure();
     switch(structureType){
-        case STRUCTURETYPESTITLES.available:
+        case 'Available':
             selectedStructure = availableStructure.availableStructure;
             break;
-        case STRUCTURETYPESTITLES.onHand:
+        case 'OnHand':
             selectedStructure = onHandStructure.onHandStructure;
             break;
         default:
