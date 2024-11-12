@@ -162,17 +162,14 @@ export const PartStructureProvider = ({children}) =>{
                 let currentMasterStructure = {};
                 if (submittedPartStructure!== activeMasterStructure.name){
                     currentMasterStructure = await httpGetPartStructure(submittedPartStructure);
-                    console.log(currentMasterStructure);
                 }else{
                     currentMasterStructure = activeMasterStructure;
                 }
                 let selectedStructure = GenerateSubmittedStructure(currentMasterStructure, submittedQty, submittedStructureType);
-                console.log("before structure find");
                 if ( !(submittedStructureType in STRUCTUREOPTIONS)){
                     throw new Error("Structure option was not submitted");
 
                 }
-                console.log("Found Structure Type");
 
                 //set all states
                 setActiveMasterStructure(currentMasterStructure);
@@ -207,7 +204,6 @@ export const PartStructureProvider = ({children}) =>{
             currentStructure = undefined;
         }
         setCurrentPartStructure(currentStructure);
-        console.log("partStructures: ",partStructures)
         setIsLoading(false);
     },[partStructures])
 

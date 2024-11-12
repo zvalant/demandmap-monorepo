@@ -35,20 +35,16 @@ const ActivePOs = ({part})=>{
         )
     }
     let accumulatedPO = part.attributes.accumulatedPO;
-    console.log(part);
     for (const [key, value] of Object.entries(accumulatedPO)){
         let currentItem = POInfoGeneration({POData: accumulatedPO[key], currentStructure: part})
         remianingPOs.push(currentItem);
 
     }
-    console.log("before reverse sort", remianingPOs);
     if (remianingPOs.length>1){
-        remianingPOs.sort((a,b)=>new Date(a[0]).getTime()- new Date(b[0]).getTime());
-        remianingPOs.reverse();
+        remianingPOs.sort();
     }
 
 
-    console.log("after reverse sort", remianingPOs);
 
     return (
         <Box

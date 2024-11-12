@@ -20,12 +20,16 @@ const renderCard = ({ nodeDatum, foreignObjectProps = {}, addToStructures,curren
   let background = "";
 
   if (nodeDatum.attributes.isDemandMet){
-    background = "#117d16"
-  }else if (nodeDatum.attributes.isComponentDemandMet){
-    background="#FFA000"
+    background = "#117D16"
+  }
+  else if (nodeDatum.attributes.isComponentDemandMet){
+    background="#d27600"
 
+  }
+  else if(!nodeDatum.attributes.isPODemandMet&& nodeDatum.attributes.purchasePart){
+    background= "#FF0000"
   }else{
-    background= "#2a329a"
+    background= "#2A329A"
   }
 
 

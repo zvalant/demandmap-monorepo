@@ -13,7 +13,6 @@ import ActivePOs from "../../../components/active-pos";
 
 const DataMenu = ()=>{
     const {currentPartStructure} = useContext(PartStructureContext);
-    console.log(currentPartStructure);
 
 
     return (

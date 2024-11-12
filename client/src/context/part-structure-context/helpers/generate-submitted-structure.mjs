@@ -3,7 +3,6 @@ import { AvailableStructure } from "./available-structure.mjs";
 
 export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=>{
     let selectedStructure = {};
-    console.log("current master structure", masterStructure);
     let availableStructure = new AvailableStructure(masterStructure,qty);
     let onHandStructure = new OnHandStructure(masterStructure,qty);
     onHandStructure.generateOnHandStructure();

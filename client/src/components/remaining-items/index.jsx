@@ -5,7 +5,6 @@ const RemaningItems = ({part})=>{
     if (!part){
         return ;
     }
-    console.log(part);
     if ('children' in part){
         for (const child of part.children){
             if (!child.attributes.isDemandMet){

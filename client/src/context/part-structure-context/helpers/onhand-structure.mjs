@@ -35,7 +35,7 @@ export class OnHandStructure extends MasterStructure{
         }
 
         //if conditions mean there is no value in traversing deeper and can backtrace.
-        if (currentStructure.attributes.isDemandMet || !masterStructure.children){
+        if (currentStructure.attributes.isDemandMet || !masterStructure.children || currentStructure.attributes.activePO){
             if (!currentStructure.attributes.isDemandMet && currentStructure.attributes.activePO){
                 currentStructure.attributes.accumulatedPO = {};
                 currentStructure.attributes.accumulatedPO[currentStructure.name] = {
@@ -43,6 +43,18 @@ export class OnHandStructure extends MasterStructure{
                     location: [[...currentStructure.attributes.location]]
                 }
             }
+            let POQty = 0;
+            if (currentStructure.attributes.activePO){
+                for (let i = 0; i< currentStructure.attributes.activePO.length;i++){
+                    POQty+= currentStructure.attributes.activePO[i].POQty;
+                }
+                currentStructure.attributes.isPODemandMet = 
+                currentStructure.attributes.demand <= currentStructure.attributes.qty + POQty;
+
+
+            }
+            
+
             return;
         }
         //add children attribute since demand isnt met and part has subcomponents
@@ -87,6 +99,7 @@ export class OnHandStructure extends MasterStructure{
         }
 
         currentStructure.attributes.childProgress = Math.floor((progressCount/masterStructure.children.length)*100)
+        
         if (progressCount===masterStructure.children.length){
             currentStructure.attributes.isComponentDemandMet = true;
 

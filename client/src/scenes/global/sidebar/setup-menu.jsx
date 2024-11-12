@@ -28,7 +28,6 @@ const SetupMenu = ()=>{
 
     const handlePartStructureChange = (event)=>{
         setIsPartStructure(event.target.value);
-        console.log(isPartStructure, "current Part Srtucutre");
     }
 
     const handleStructureTypeChange = (event)=>{
@@ -49,13 +48,11 @@ const SetupMenu = ()=>{
         let idx = 0;
         try {
             while( idx< pulledStruture.length && pulledStruture[idx]+pulledStruture[idx+1]!== "||"){
-                console.log(pulledStruture[idx]+pulledStruture[idx+1])
                 idx++;
 
             }
 
             parsedStructure = pulledStruture.slice(0,idx-1);
-            console.log("parsed structure: ",parsedStructure);
             setIsPartStructure(parsedStructure);
 
         }catch(err){
