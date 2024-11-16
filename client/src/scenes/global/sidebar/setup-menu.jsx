@@ -1,10 +1,8 @@
 import { Box, Button ,Autocomplete, TextField,useTheme, Typography} from "@mui/material";
-import Quantity from "../../../components/quantity";
 //needs to be an array of part numbers later
 import { tokens } from "../../../theme";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
-import { httpGetAllPartStructures } from "../../../utils/requests.mjs";
 import "./setup-menu.styles.css"
 import {STRUCTUREOPTIONS} from "../../../utils/misc.mjs"
 

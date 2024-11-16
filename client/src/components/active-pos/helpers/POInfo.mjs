@@ -1,5 +1,6 @@
 export const POInfoGeneration = ({POData, currentStructure})=>{
-
+    console.log("POData: ", POData);
+    console.log("CurrentStruct: ", currentStructure);
     let currentQty = 0;
     let location = POData.location[0];
 
@@ -27,6 +28,7 @@ export const POInfoGeneration = ({POData, currentStructure})=>{
             break;
         }
     }
+    console.log(currentPart);
     return [currentDate, currentQty, currentPart];
 
 

@@ -1,14 +1,13 @@
 import { useContext, useState } from "react";
-import { Typography, Box,TextField, Button, useTheme} from "@mui/material";
+import { Box,TextField, Button, useTheme} from "@mui/material";
 import { tokens } from "../../../theme";
-import { httpAddPartStructure } from "../../../utils/requests.mjs";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
 const AddPartStructure = () =>{
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [isStructure, setIsStrucutre] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const {submittedStructureCount,setSubmittedStructureCount, setSubmittedStructureOption, submittedStructureOption} = useContext(PartStructureContext);
+    const {submittedStructureCount,setSubmittedStructureCount, setSubmittedStructureOption} = useContext(PartStructureContext);
 
     const handleSubmit = async(event)=>{
         setIsSubmitted(true);

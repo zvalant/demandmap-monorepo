@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
+import {useState } from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme, Button} from "@mui/material";
+import { Box, Typography, useTheme} from "@mui/material";
 
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../../theme";
 
 import AddPartStructure from "./add-structure-menu";
 import SetupMenu from "./setup-menu";
-import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
 import DataMenu from "./data-menu";
 const SIDEBARSUBMENUS = {
   collapsed: "Collapsed",
@@ -25,7 +24,7 @@ const Sidebar = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed] = useState(false);
   const [isAddPartStructure, setIsAddPartStructure] = useState(false);
   const [isSetupOpen, setIsSetupOpen] = useState(false);
   const [isDataOpen, setIsDataOpen] = useState(false);
