@@ -1,6 +1,15 @@
 import { OnHandStructure } from "./onhand-structure.mjs";
 import { AvailableStructure } from "./available-structure.mjs";
 
+/*
+Purpose:
+GenerateSubmittedStructure will take the master structure and generate
+the selected structres using the parameters selected during setup.  
+current options:
+AvailableStructure
+OnHandStructure
+
+*/
 export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=>{
     let selectedStructure = {};
     let availableStructure = new AvailableStructure(masterStructure,qty);

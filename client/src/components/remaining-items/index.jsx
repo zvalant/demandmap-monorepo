@@ -1,5 +1,12 @@
 import { Box, colors, Typography } from "@mui/material";
 import ItemContaioner from "./item-container";
+
+/*
+Purpose: 
+Remaining Items will check if there are any children 
+in the current structure and if so will map all
+children to ItemContainer.
+*/
 const RemaningItems = ({part})=>{
     const incompleteParts = [];
     if (!part){

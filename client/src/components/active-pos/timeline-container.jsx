@@ -8,7 +8,12 @@ import TimelineOppositeContent, {
     timelineOppositeContentClasses,
   } from '@mui/lab/TimelineOppositeContent';
 
-
+/*Purpose:
+TimelineContainer will take in the info for a purchase Item 
+that is currently on order and create the component that 
+will have the date of arrival on the left and the part number
+and qty coming in by the arrival date.  
+*/
 const TimelineContainer = ({timelineInfo, index, poSize})=>{
     let date = timelineInfo[0];
     let qty = timelineInfo[1];

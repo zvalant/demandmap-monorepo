@@ -19,7 +19,11 @@ const SIDEBARSUBMENUS = {
   AddPartStructure: "Add Part Structure",
 
 }
-
+/*
+Purpose:
+Sidebar is where all submenus are contained and all webkit configurations
+to change scrollbars.
+*/
 const Sidebar = () => {
 
   const theme = useTheme();

@@ -1,7 +1,17 @@
+
+/*Purpose:
+POInfoGeneration will find the item info based on 
+location in the tree and find the earliest date the demand 
+can be satified or maximum ammount that is currently on order.
+
+*/
+
+
 export const POInfoGeneration = ({POData, currentStructure})=>{
     console.log("POData: ", POData);
     console.log("CurrentStruct: ", currentStructure);
     let currentQty = 0;
+    //set current date, should modify to be max qty on map.
     let location = POData.location[0];
 
     for (let i = 0;i< currentStructure.attributes.location.length;i++){
@@ -28,7 +38,6 @@ export const POInfoGeneration = ({POData, currentStructure})=>{
             break;
         }
     }
-    console.log(currentPart);
     return [currentDate, currentQty, currentPart];
 
 

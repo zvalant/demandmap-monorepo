@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import Autocomplete from '@mui/material/Autocomplete';
 import { TextField,  Box } from "@mui/material";
 import "./scrollbar.css"
-
+/*
+Purpose:
+StructureSelection will take all available part structures
+that are available to select. **MUI componenet includes 
+no options display**
+for 
+*/
 
 
 

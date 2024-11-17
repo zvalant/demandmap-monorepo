@@ -2,7 +2,17 @@ import { structuresDatabase } from './structure.mongo.mjs'
 import { MasterStructure } from './helpers/master-structure.mjs';
 import { qadCache } from './helpers/qad-structure-cache.mjs';
 
+/*
+Purpose: 
+Methods for Strucutres API requests.  Interact with 
+Structures DB to perform current actions that include
+adding structures, Getting specific structure and 
+pulling all names and descriptions of strucutres
 
+*/
+
+
+//Get all name and descripitons of items currently in DB
 export async function getAllStructures(){
     try{
         const currentStrucutres = [];
@@ -20,7 +30,7 @@ export async function getAllStructures(){
     }
   
 }
-
+//Get specific master structure from a database using PN as key
 export async function getActiveStructure(structureParameters){
     const structureID = structureParameters;
     try{
@@ -38,6 +48,7 @@ export async function getActiveStructure(structureParameters){
             return undefined;
         }
 }
+//Add new Entry into Structures DB
 export async function addNewStructure(structureID){
     try{
         const response = await structuresDatabase.findById(structureID);

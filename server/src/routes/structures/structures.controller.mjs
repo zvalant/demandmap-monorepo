@@ -1,6 +1,10 @@
 import {getAllStructures, getActiveStructure, addNewStructure} from "../../models/structures/structures.model.mjs"
 import { qadPartFetch } from "../../services/qad/qad-api.mjs";
-
+/*
+Purpose:
+Controller for all strucutres API request and will return 
+appropriate response. 
+*/
 export async function httpGetAllStructures(req,res){
     const response = await getAllStructures();
     if (!response){

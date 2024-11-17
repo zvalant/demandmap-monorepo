@@ -1,5 +1,5 @@
 import { mongoose } from "mongoose";
-
+//Current Schema for Structures DB
 
 const structureSchema = new mongoose.Schema({
     _id: {

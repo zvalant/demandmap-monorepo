@@ -4,6 +4,11 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import {api} from './routes/api.mjs';
+
+/*
+Purpose:
+Create configuration for server using express.
+*/
 export const app = express();
 
 app.use(cors());

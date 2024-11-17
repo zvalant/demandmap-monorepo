@@ -1,4 +1,9 @@
 import { useCallback, useState } from "react";
+/*
+Purpose:
+useCenteredTree will generate a home position for every map 
+that gets generated.
+*/
 
 export const useCenteredTree = (defaultTranslate = { x: 0, y: 0 }) => {
   const [translate, setTranslate] = useState(defaultTranslate);

@@ -206,7 +206,7 @@ export const PartStructureProvider = ({children}) =>{
         setCurrentPartStructure(currentStructure);
         setIsLoading(false);
     },[partStructures])
-
+    //add new structure to DB and then repull all structures from DB
     useEffect(()=>{
         const fetchNewStructureOptions = async()=>{
             if (submittedStructureCount==0){
@@ -231,6 +231,7 @@ export const PartStructureProvider = ({children}) =>{
         fetchNewStructureOptions();
 
     }, [submittedStructureCount])
+    // this will pull all the current structures stored on DB
     useEffect(()=>{
         const fetchInitialStructureOptions = async ()=>{
             try{

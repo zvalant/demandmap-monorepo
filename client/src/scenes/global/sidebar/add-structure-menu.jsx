@@ -2,6 +2,13 @@ import { useContext, useState } from "react";
 import { Box,TextField, Button, useTheme} from "@mui/material";
 import { tokens } from "../../../theme";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
+
+/*
+Purpose: 
+AddPartStructure will have a text box and submit button to
+allow a user to add a part structure if part structure is
+not currently stored in DB.
+*/
 const AddPartStructure = () =>{
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);

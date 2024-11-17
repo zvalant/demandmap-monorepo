@@ -1,6 +1,9 @@
 /*
-Purpose: Contains data sections of the active top node.  Currently RemainingItems & 
-PartInfo
+Purpose: Contains data sections of the active top node.
+Current subsections:
+Remaining Items
+Active POs
+Part Info
 */
 
 import { Box, Typography } from "@mui/material"

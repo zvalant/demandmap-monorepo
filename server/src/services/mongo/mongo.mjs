@@ -1,6 +1,9 @@
 import { mongoose } from "mongoose";
 import { MONGOPASS_ENCODED } from "./mongo-info.mjs";
-
+/*
+Purpose:
+Create a Connect and Disconnect for the MongoDB
+*/
 const MONGO_URL = `mongodb+srv://structuredbconnect:${MONGOPASS_ENCODED}@demandmapstructures.3rltl.mongodb.net/DemandMapStructures?retryWrites=true&w=majority&appName=DemandMapStructures`;
 
 export async function mongoConnect(){

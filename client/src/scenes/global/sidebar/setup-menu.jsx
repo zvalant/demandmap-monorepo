@@ -1,11 +1,15 @@
 import { Box, Button ,Autocomplete, TextField,useTheme, Typography} from "@mui/material";
-//needs to be an array of part numbers later
 import { tokens } from "../../../theme";
 import { useContext, useState } from "react";
 import { PartStructureContext } from "../../../context/part-structure-context/part-structure-context";
 import "./setup-menu.styles.css"
 import {STRUCTUREOPTIONS} from "../../../utils/misc.mjs"
-
+/*
+Purpose:
+SetupMenu will show the available Selection options to pick from 
+and will update context values to trigger the structure 
+generation.  
+*/
 const SetupMenu = ()=>{
     const theme = useTheme();
     const STRUCTUREOPTIONSLIST = [];
@@ -44,6 +48,7 @@ const SetupMenu = ()=>{
         let pulledStruture = isSelectedPartStructure;
         let parsedStructure = "";
         let idx = 0;
+        //Parse part structure selection to find selected part number.  
         try {
             while( idx< pulledStruture.length && pulledStruture[idx]+pulledStruture[idx+1]!== "||"){
                 idx++;
@@ -122,8 +127,7 @@ const SetupMenu = ()=>{
 
                           },
                         }}
-                      
-                    //need to change this after context implementation
+                    
                     onChange={(event, value) => {setIsSelectedPartStructure(value); setIsSubmitted(false)}}
                     getOptionLabel={(option) => option.toString()} 
                     

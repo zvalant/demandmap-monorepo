@@ -5,6 +5,11 @@ import { useContext } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import zIndex from '@mui/material/styles/zIndex';
 import { PartStructureContext } from '../../context/part-structure-context/part-structure-context';
+/*Purpose:
+ItemContainer will be for every child in the current structure and create
+a clickable container that includes Part Number, Description, and either 
+the % of complete children for that child or if its a purchase part.
+*/
 
 const ItemContaioner = ({component})=>{
     const theme = useTheme();

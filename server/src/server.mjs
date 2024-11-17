@@ -3,7 +3,12 @@ import {app} from './app.mjs';
 import {mongoConnect} from "./services/mongo/mongo.mjs"
 import cron from 'node-cron'
 import { updateDatabase } from './cronSchedule.mjs';
-
+/*
+Purpose: 
+create server and connect to MongoDB
+and structure all scheduled tasks such 
+as DB managment.
+*/
 const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 
