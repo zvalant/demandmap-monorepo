@@ -1,6 +1,6 @@
-import { structuresDatabase } from './structure.mongo.mjs'
-import { MasterStructure } from './helpers/master-structure.mjs';
-import { qadCache } from './helpers/qad-structure-cache.mjs';
+import { structuresDatabase } from './structure.mongo.js'
+import { MasterStructure } from './helpers/master-structure.js';
+import { qadCache } from './helpers/qad-structure-cache.js';
 
 /*
 Purpose: 

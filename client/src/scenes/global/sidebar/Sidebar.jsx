@@ -171,7 +171,7 @@ const Sidebar = () => {
               >
                 <Typography sx = {{m: .5}} variant="h3" color={colors.grey[100]} title="BAADER ////">
                 
-                  BAADER 
+                  BAADER
                 </Typography>
                 <Typography  sx={{m: .5}} variant="h2" color={colors.grey[100]} title="////"> ////
                 </Typography>

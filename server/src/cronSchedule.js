@@ -1,7 +1,6 @@
-import { mongoConnect } from "./services/mongo/mongo.mjs"
-import { structuresDatabase } from "./models/structures/structure.mongo.mjs"
-import { qadCache } from "./models/structures/helpers/qad-structure-cache.mjs";
-import { MasterStructure } from "./models/structures/helpers/master-structure.mjs";
+import { structuresDatabase } from "./models/structures/structure.mongo.js"
+import { qadCache } from "./models/structures/helpers/qad-structure-cache.js";
+import { MasterStructure } from "./models/structures/helpers/master-structure.js";
 
 
 /*

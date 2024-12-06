@@ -6,6 +6,7 @@ the onHand demand map.
 */
 
 
+
 export class OnHandStructure extends MasterStructure{
     constructor(master, demand){
         super(master)
@@ -108,3 +109,4 @@ export class OnHandStructure extends MasterStructure{
         }
     }
 };
+

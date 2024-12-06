@@ -1,5 +1,4 @@
-import { qadPartFetch } from "../../../services/qad/qad-api.mjs";
-
+import { qadPartFetch } from "../../../services/qad/qad-api.js";
 /*
 Purpose: 
 will take in qty and name and create main json objects that can be used to generate the 
@@ -38,7 +37,8 @@ export class MasterStructure {
             if (this.cache[part]){
                 fetchedData = this.cache[part];
             }else{
-                fetchedData = await qadPartFetch(part).ItemInv[0];}
+                fetchedData = await qadPartFetch(part)
+                fetchedData = fetchedData.itemInv[0];}
             currentStructure.attributes = {};
             currentStructure.attributes.onHand = fetchedData.Qty;
             currentStructure.attributes.qtyAllocated = fetchedData.QtyAll;
@@ -91,4 +91,3 @@ export class MasterStructure {
     }
 
     };
-

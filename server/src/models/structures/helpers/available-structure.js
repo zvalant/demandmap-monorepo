@@ -1,5 +1,5 @@
-import { MasterStructure } from "./master-structure.mjs";
-import { qadCache } from "./qad-structure-cache.mjs";
+import { MasterStructure } from "./master-structure.js";
+import { qadCache } from "./qad-structure-cache.js";
 /*
 class Purpose:
 this class will pull attributes from master structure and create the structure for 

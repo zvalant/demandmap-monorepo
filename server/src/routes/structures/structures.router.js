@@ -1,5 +1,5 @@
 import express from 'express';
-import {httpGetAllStructures,httpGetActiveStructure, httpAddNewStructure} from "./structures.controller.mjs";
+import {httpGetAllStructures,httpGetActiveStructure, httpAddNewStructure} from "./structures.controller.js";
 export const structuresRouter = express.Router();
 /*
 Puropse:

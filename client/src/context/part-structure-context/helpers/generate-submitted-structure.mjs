@@ -14,6 +14,7 @@ export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=
     let selectedStructure = {};
     let availableStructure = new AvailableStructure(masterStructure,qty);
     let onHandStructure = new OnHandStructure(masterStructure,qty);
+    console.log(masterStructure);
     onHandStructure.generateOnHandStructure();
     availableStructure.generateAvailableStructure();
     switch(structureType){

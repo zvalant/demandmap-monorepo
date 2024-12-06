@@ -26,6 +26,7 @@ const RemaningItems = ({part})=>{
         sx={{display: "flex", 
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
             width: "100%",
         
         }}><Typography variant="h5">No Remaining Items</Typography></Box>

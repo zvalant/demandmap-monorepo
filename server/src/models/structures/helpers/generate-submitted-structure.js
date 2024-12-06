@@ -1,4 +1,4 @@
-import { OnHandStructure } from "./onhand-structure.mjs";
+import { OnHandStructure } from "./onhand-structure.js";
 import { AvailableStructure } from "./available-structure.mjs";
 export const GenerateSubmittedStructure = (masterStructure, qty, structureType)=>{
     let selectedStructure = {};

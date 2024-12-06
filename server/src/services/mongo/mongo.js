@@ -1,5 +1,5 @@
 import { mongoose } from "mongoose";
-import { MONGOPASS_ENCODED } from "./mongo-info.mjs";
+import { MONGOPASS_ENCODED } from "./mongo-info.js";
 /*
 Purpose:
 Create a Connect and Disconnect for the MongoDB

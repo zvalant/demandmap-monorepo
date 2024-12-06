@@ -165,6 +165,7 @@ export const PartStructureProvider = ({children}) =>{
                 }else{
                     currentMasterStructure = activeMasterStructure;
                 }
+                console.log("request hit")
                 let selectedStructure = GenerateSubmittedStructure(currentMasterStructure, submittedQty, submittedStructureType);
                 if ( !(submittedStructureType in STRUCTUREOPTIONS)){
                     throw new Error("Structure option was not submitted");

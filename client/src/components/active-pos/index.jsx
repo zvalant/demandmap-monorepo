@@ -51,7 +51,7 @@ const ActivePOs = ({part})=>{
         sx = {{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "left",
             alignItems: "center",
             width: "90%",
             mt: 1

@@ -1,5 +1,5 @@
 import express from 'express';
-import {structuresRouter} from "./structures/structures.router.mjs";
+import {structuresRouter} from "./structures/structures.router.js";
 /*
 Purpose: 
 leverages express router to delegate requests to specific controllers depending on requests.

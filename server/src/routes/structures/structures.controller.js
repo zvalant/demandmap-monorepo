@@ -1,5 +1,5 @@
-import {getAllStructures, getActiveStructure, addNewStructure} from "../../models/structures/structures.model.mjs"
-import { qadPartFetch } from "../../services/qad/qad-api.mjs";
+import {getAllStructures, getActiveStructure, addNewStructure} from "../../models/structures/structures.model.js"
+import { qadPartFetch } from "../../services/qad/qad-api.js";
 /*
 Purpose:
 Controller for all strucutres API request and will return 
@@ -32,7 +32,7 @@ export async function httpAddNewStructure(req,res){
 }
 
 export async function httpGetActiveStructure(req,res){
-    let structureParameters = Number(req.params.id);
+    let structureParameters = req.params.id;
     try{
         let structure =  (await getActiveStructure(structureParameters));
         if (!structure){

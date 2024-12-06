@@ -1,4 +1,4 @@
-import { MasterStructure } from "./master-structure.mjs";
+import { MasterStructure } from "./master-structure.js";
 /*
 class Purpose:
 this class will pull attributes from the master structure and create the structure for 

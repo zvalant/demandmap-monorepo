@@ -1,8 +1,8 @@
 import * as http from 'http';
-import {app} from './app.mjs';
-import {mongoConnect} from "./services/mongo/mongo.mjs"
+import {app} from './app.js';
+import {mongoConnect} from "./services/mongo/mongo.js"
 import cron from 'node-cron'
-import { updateDatabase } from './cronSchedule.mjs';
+import { updateDatabase } from './cronSchedule.js';
 /*
 Purpose: 
 create server and connect to MongoDB

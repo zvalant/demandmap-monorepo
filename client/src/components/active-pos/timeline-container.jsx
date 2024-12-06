@@ -18,17 +18,20 @@ const TimelineContainer = ({timelineInfo, index, poSize})=>{
     let date = timelineInfo[0];
     let qty = timelineInfo[1];
     let partNumber = timelineInfo[2];
-    console.log("Hit container");
+    let description = timelineInfo[3];
+    let isDemandMet = timelineInfo[4];
+
     if (index+1==poSize){
         return (
             <TimelineItem sx={{display: "flex", flexDirection: "row"}}>
-            <TimelineOppositeContent sx={{width: "110px"
+            <TimelineOppositeContent sx={{width: "125px"
             }}>{date}</TimelineOppositeContent>
             <TimelineSeparator>
-                <TimelineDot/>
+                { isDemandMet && <TimelineDot color='success'/>}
+                { !isDemandMet && <TimelineDot color = 'warning'/>}
             </TimelineSeparator>
-            <TimelineContent sx={{width: "110px"
-            }}>{partNumber} QTY: {qty}</TimelineContent>
+            <TimelineContent sx={{width: "125px"
+            }}>{partNumber} <br/>{description} <br/>QTY: {qty}</TimelineContent>
         </TimelineItem>
         )
 
@@ -36,15 +39,17 @@ const TimelineContainer = ({timelineInfo, index, poSize})=>{
         return(
             <TimelineItem sx={{display: "flex", flexDirection: "row"}}>
             <TimelineOppositeContent
-            sx={{width: "110px"
+            sx={{width: "125px"
             }}>{date}</TimelineOppositeContent>
             <TimelineSeparator>
-                <TimelineDot/>
+            { isDemandMet && <TimelineDot color='success'/>}
+            { !isDemandMet && <TimelineDot color = 'warning'/>}
                 <TimelineConnector/>
             </TimelineSeparator>
             <TimelineContent
-          sx={{width: "110px"
-          }}>{partNumber} QTY: {qty}</TimelineContent>
+          sx={{width: "125px",
+            whiteSpace: "pre-wrap"
+          }}>{partNumber} <br/>{description} <br/>QTY: {qty}</TimelineContent>
         </TimelineItem>
             )
 

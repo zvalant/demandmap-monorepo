@@ -1,4 +1,4 @@
-import { QAD_API_BASE } from "../../../services/qad/qad-api-info.mjs";
+import { QAD_API_BASE } from "../../../services/qad/qad-api-info.js";
 import axios from "axios";
 
 
