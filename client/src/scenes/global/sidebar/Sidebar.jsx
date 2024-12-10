@@ -147,7 +147,7 @@ const Sidebar = () => {
         }}
         display="flex"
         flexDirection="column">
-      <ProSidebar collapsed={isCollapsed} >
+      <ProSidebar collapsed={isCollapsed} width={"285px"}>
         <Menu iconShape="square" 
         > 
           {/* LOGO AND MENU ICON */}
