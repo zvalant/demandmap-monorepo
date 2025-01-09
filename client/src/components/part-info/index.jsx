@@ -1,5 +1,6 @@
 import { Box, Typography, useTheme} from "@mui/material";
 import { tokens } from "../../theme";
+import { STRUCTUREOPTIONS, numFormat } from "../../utils/misc.mjs";
 
 
 /*
@@ -9,7 +10,7 @@ on structure type in the future.
 
 */
 
-const PartInfo = ({part})=>{
+const PartInfo = ({part, activeStructureType})=>{
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     //will need to change math for structure selection only set for available
@@ -23,8 +24,8 @@ const PartInfo = ({part})=>{
             <Typography variant="h6">Desc: {part.attributes.description}</Typography>
             <Typography variant="h6">Cost: ${part.attributes.cost}</Typography>
             <Typography variant="h6">Qty Req: {part.attributes.demand}</Typography>
-            <Typography variant="h6">Qty On Hand: {part.attributes.qty+part.attributes.qtyAllocated}</Typography>
-            <Typography variant="h6">Qty Available: {part.attributes.qty}</Typography>
+            { STRUCTUREOPTIONS.OnHand == activeStructureType && <Typography variant="h6">Qty On Hand: {part.attributes.qty}</Typography>}
+            { STRUCTUREOPTIONS.Available == activeStructureType && <Typography variant="h6">Qty Available: {part.attributes.qty}</Typography>}
 
 
             

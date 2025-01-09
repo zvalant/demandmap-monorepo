@@ -15,7 +15,7 @@ import * as React from 'react';
 import ActivePOs from "../../../components/active-pos";
 
 const DataMenu = ()=>{
-    const {currentPartStructure} = useContext(PartStructureContext);
+    const {currentPartStructure, activeStructureType} = useContext(PartStructureContext);
 
 
     return (
@@ -52,7 +52,7 @@ const DataMenu = ()=>{
             <Box display="flex" flexDirection= "column" alignItems="center"
               >
               <Typography variant="h5">PART INFO</Typography>
-              <PartInfo part={currentPartStructure}/>
+              <PartInfo part={currentPartStructure} activeStructureType = {activeStructureType}/>
             </Box>
         </Box>
         
